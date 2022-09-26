@@ -1,0 +1,45 @@
+<form #myForm="ngForm" (ngSubmit)="onSubmit()">
+
+    <fieldset>
+      <label for="email">E-mail</label>
+      <input id="email" name="email" type="email" [(ngModel)]="user.email" #email="ngModel" required minlength="3" maxlength="15">
+    </fieldset>
+
+    <div *ngIf="email.errors">
+        <span *ngIf="myForm.submitted && email.errors?.['required']">L'email est requis</span>
+        <span *ngIf="myForm.submitted && email.errors?.['email']"> L'email est invalide</span>
+      </div>
+
+    <fieldset>
+      <label for="firstname">Prénom</label>
+      <input id="firstname" name="firstname" type="text" [(ngModel)]="user.firstname" #firstname="ngModel" required minlength="3" maxlength="15">
+    </fieldset>
+
+    <div *ngIf="firstname.errors">
+        <span *ngIf="myForm.submitted && firstname.errors?.['required']">Le prénom est requis</span>
+        <span *ngIf="myForm.submitted && firstname.errors?.['maxlength']">Le pénom ne doit pas dépasser 15 caractères</span>
+        <span *ngIf="myForm.submitted && firstname.errors?.['minlength']">Le prénom doit comporter au moins 3 caractères.</span>
+      </div>
+
+    <fieldset>
+      <label for="lastname">Nom</label>
+      <input id="date-order" name="date-order" type="text" [(ngModel)]="user.lastname" #lastname="ngModel" required>
+    </fieldset>
+
+    <div *ngIf="lastname.errors">
+        <span *ngIf="myForm.submitted && lastname.errors?.['required']">Le nom est requis</span>
+        <span *ngIf="myForm.submitted && lastname.errors?.['maxlength']">Le nom ne doit pas dépasser 15 caractères</span>
+        <span *ngIf="myForm.submitted && lastname.errors?.['minlength']">Le nom doit comporter au moins 3 caractères.</span>
+      </div>
+
+    <fieldset>
+      <label for="password">Mot de passe</label>
+      <input id="password" name="password" type="text" [(ngModel)]="user.password" #password="ngModel" required>
+    </fieldset>
+
+    <div *ngIf="password.errors">
+        <span *ngIf="myForm.submitted && password.errors?.['required']">Le mot de passe est requis</span>
+      </div>
+
+    <button type="submit">Inscription</button>
+</form>
